@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О себе - Лабораторная работа №6</title>
+    <!-- Подключение общего внешнего файла стилей -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- Подключение PWA манифеста -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+</head>
+<body>
+    <main class="container">
+        <h1>Страница «О себе»</h1>
+        
+        <nav>
+            <a href="/">← На главную</a>
+        </nav>
+
+        <hr>
+
+        <section class="about-card">
+            <h2>Информация о разработчике</h2>
+            <ul>
+                <li><strong>Студент:</strong> Татьяна Авраменко</li>
+                <li><strong>Направление:</strong> Программная инженерия</li>
+                <li><strong>Курс:</strong> 3 курс</li>
+            </ul>
+
+            <h3>О проекте</h3>
+            <p>
+                В рамках данной лабораторной работы реализован веб-сервер на Node.js и Express. 
+                Сервер обрабатывает статические веб-страницы, поддерживает API с локализацией ответов (RU/EN), 
+                а также превращён в PWA с помощью манифеста и Service Worker для работы в офлайн-режиме.
+            </p>
+        </section>
+    </main>
+
+    <script>
+        // Регистрация Service Worker для PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker успешно зарегистрирован на странице About:', reg.scope))
+                    .catch(err => console.error('Ошибка регистрации Service Worker:', err));
+            });
+        }
+    </script>
+</body>
+</html>
